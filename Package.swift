@@ -2,6 +2,8 @@
 
 import PackageDescription
 
+let rpath = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx"
+
 let package = Package(
     name: "Komondor",
     products: [
@@ -19,7 +21,10 @@ let package = Package(
     targets: [
         .target(
             name: "Komondor",
-            dependencies: ["PackageConfig", "ShellOut"]
+            dependencies: ["PackageConfig", "ShellOut"],
+            linkerSettings: [
+                .unsafeFlags(["-rpath", rpath])
+            ]
         ),
     ]
 )
